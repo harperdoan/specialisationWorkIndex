@@ -1,0 +1,413 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>FocusScape | System Design Document</title>
+
+    <link rel="icon" type="image/png" href="assets/icons/favicon.png">
+    <link rel="stylesheet" href="reset.css">
+    <link rel="stylesheet" href="assignment1.css">
+</head>
+
+<body>
+
+    <header class="site-header">
+        <nav>
+            <a href="index.html">← Back to Work Index</a>
+        </nav>
+
+        <p class="eyebrow">Assignment 1 - System Design Document</p>
+        <h1>FocusScape</h1>
+        <p class="intro">
+            A browser-based dynamic soundscape designed to support studying and focused work.
+        </p>
+    </header>
+
+    <main>
+
+        <section class="project-info">
+            <h2>Project at a Glance</h2>
+
+            <dl>
+                <div>
+                    <dt>Design Scenario</dt>
+                    <dd>Scenario 5: Dynamic Soundtrack-er</dd>
+                </div>
+
+                <div>
+                    <dt>Activity</dt>
+                    <dd>Studying and focused work</dd>
+                </div>
+
+                <div>
+                    <dt>Extended Technique</dt>
+                    <dd>Randomisation using Math.random()</dd>
+                </div>
+            </dl>
+        </section>
+
+
+        <section id="scenario">
+            <p class="section-number">01</p>
+            <h2>Design Scenario Analysis and Response</h2>
+
+            <p>
+                I chose <strong>Scenario 5: Dynamic Soundtrack-er</strong>, which asks for
+                a browser-based instrument that creates an ongoing soundtrack for a particular
+                activity or environment.
+            </p>
+
+            <p>
+                I interpreted this scenario as an opportunity to design a soundtrack for
+                <strong>studying and focused work</strong>. When studying for a long period,
+                listening to the same short audio loop can become repetitive, while frequently
+                changing songs or playlists can become another distraction. I wanted to explore
+                a sound environment that changes subtly by itself while still giving the user
+                some control over what they hear.
+            </p>
+
+            <h3>Purpose</h3>
+
+            <p>
+                The purpose of the project is to allow users to create and adjust an evolving
+                background soundtrack that supports concentration without requiring constant
+                interaction.
+            </p>
+
+            <h3>Worth</h3>
+
+            <p>
+                The main values of the project are <strong>calmness, personalisation and low
+                distraction</strong>. Users should have enough control to create a sound
+                environment that suits them, but the interface should become less demanding
+                once they begin studying.
+            </p>
+        </section>
+
+
+        <section id="overview">
+            <p class="section-number">02</p>
+            <h2>Project Overview</h2>
+
+            <h3>FocusScape</h3>
+
+            <p>
+                FocusScape is a browser-based audio instrument for creating personalised
+                background soundscapes while studying. Instead of choosing and playing a
+                fixed song, users build an atmosphere from several sound layers.
+            </p>
+
+            <p>
+                A user could begin by choosing an environment such as rain, café, ocean,
+                forest or night. They could then combine sounds such as rain, wind,
+                café ambience or soft musical textures and adjust the volume of each layer.
+            </p>
+
+            <p>
+                The soundtrack would continue to evolve after the user starts their study
+                session. Small details could appear at different times and some layers could
+                change slightly in intensity. These changes would be subtle so that the
+                soundtrack feels less repetitive without becoming distracting.
+            </p>
+
+            <p>
+                FocusScape responds to the scenario's <strong>purpose</strong> by providing
+                an ongoing soundtrack that can continue changing without frequent user input.
+                It responds to its <strong>worth</strong> by keeping the experience calm,
+                personal and simple enough to remain in the background while the user works.
+            </p>
+        </section>
+
+
+        <section id="framing">
+            <p class="section-number">03</p>
+            <h2>Project Framing</h2>
+
+            <p>
+                FocusScape will be designed as a simple browser-based audio instrument rather
+                than a full music streaming or professional music production platform.
+                This keeps the project centred on concentration and ambient listening.
+            </p>
+
+            <div class="framing-grid">
+
+                <article>
+                    <h3>Included</h3>
+                    <ul>
+                        <li>Layered ambient sounds</li>
+                        <li>Simple volume controls for each sound</li>
+                        <li>Different atmosphere or mood options</li>
+                        <li>A minimal study mode</li>
+                        <li>Continuous audio playback</li>
+                        <li>Controlled random variation</li>
+                        <li>Immediate audio feedback when settings are changed</li>
+                    </ul>
+                </article>
+
+                <article>
+                    <h3>Excluded</h3>
+                    <ul>
+                        <li>Music streaming and playlists</li>
+                        <li>Social or multiplayer functions</li>
+                        <li>Professional audio production controls</li>
+                        <li>Detailed music composition tools</li>
+                        <li>Competitive or gamified features</li>
+                    </ul>
+                </article>
+
+            </div>
+
+            <h3>Extended Technique: Randomisation</h3>
+
+            <p>
+                The extended technique I propose to use is randomisation through
+                <code>Math.random()</code>. It could be used to decide when small changes
+                happen in the soundtrack, such as the appearance of an ambient detail or a
+                slight change in the intensity of a sound layer.
+            </p>
+
+            <p>
+                Randomness would be kept within controlled limits. Sudden or extreme changes
+                could interrupt concentration, so FocusScape would only use subtle variation.
+                This should make the soundscape feel more natural and less repetitive while
+                maintaining the calm character of the project.
+            </p>
+
+            <p>
+                <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Math/random"
+                    target="_blank" rel="noopener">
+                    Read about Math.random() on MDN ↗
+                </a>
+            </p>
+        </section>
+
+
+        <section id="analysis">
+            <p class="section-number">04</p>
+            <h2>Interaction Design Analysis</h2>
+
+            <p>
+                I analysed four browser-based audio interfaces. Each example focuses on a
+                different aspect of interaction design and helped define how FocusScape
+                should work.
+            </p>
+
+
+            <article class="ui-analysis">
+                <p class="ui-label">Provided UI — Feedback</p>
+                <h3>OTS-01</h3>
+
+        <figure class="ui-figure">
+            <img src="assets/images/ots01.png"
+                alt="OTS-01 browser-based virtual synthesizer interface">
+            <figcaption>
+                Figure 1. OTS-01 interface. Source: bellicapelli.
+            </figcaption>
+        </figure>
+
+                <p>
+                    OTS-01 is a browser-based virtual toy synthesizer that allows users to
+                    draw and edit sound waves and immediately hear the result. It also provides
+                    tooltips that explain the functions of its controls.
+                </p>
+
+                <p>
+                    The strongest part of the interface for my project is its
+                    <strong>feedback</strong>. There is a clear relationship between changing
+                    something in the interface and hearing how that change affects the sound.
+                    This makes experimentation easier because the user does not need to predict
+                    the result before interacting.
+                </p>
+
+                <p>
+                    This influenced FocusScape by showing the importance of immediate audio
+                    feedback. When a user adds a sound layer or adjusts its volume, they should
+                    hear the change straight away. This would make the soundscape easier to
+                    build through listening rather than through complicated settings.
+                </p>
+
+                <p>
+                    <a href="https://bellicapelli.itch.io/ots-01"
+                        target="_blank" rel="noopener">
+                        Visit OTS-01 ↗
+                    </a>
+                </p>
+            </article>
+
+
+            <article class="ui-analysis">
+                <p class="ui-label">Provided UI — Information Design</p>
+                
+            <figure class="ui-figure">
+                <img src="assets/images/jungle.png"
+                    alt="The Ultimate Jungle Noise Generator interface showing adjustable sound controls">
+                <figcaption>
+                    Figure 2. The Ultimate Jungle Noise Generator interface. Source: myNoise.
+                </figcaption>
+            </figure>
+
+                <p>
+                    The Ultimate Jungle Noise Generator by myNoise creates a continuous
+                    natural soundscape from multiple audio elements. Users can adjust the
+                    balance of the sound rather than only listening to one fixed recording.
+                </p>
+
+                <p>
+                    I looked at this interface mainly through
+                    <strong>information design</strong>. A soundscape can contain many
+                    individual elements, so the interface needs a clear way to show which
+                    elements can be adjusted without turning the experience into complicated
+                    professional audio software.
+                </p>
+
+                <p>
+                    For FocusScape, I would keep the sound controls grouped into a small number
+                    of clear layers. Users would be able to personalise their environment, 
+                    but only the controls that are useful for studying would be shown.
+                </p>
+
+                <p>
+                    <a href="https://mynoise.net/NoiseMachines/jungleNoiseGenerator.php/"
+                        target="_blank" rel="noopener">
+                        Visit The Ultimate Jungle Noise Generator ↗
+                    </a>
+                </p>
+            </article>
+
+
+            <article class="ui-analysis">
+                <p class="ui-label">Independent Research — Purpose and Simplicity</p>
+                <h3>A Soft Murmur</h3>
+
+            <figure class="ui-figure">
+                <img src="assets/images/softmurmur.png"
+                    alt="A Soft Murmur interface showing different ambient sound options">
+                <figcaption>
+                    Figure 3. A Soft Murmur interface. Source: A Soft Murmur.
+                </figcaption>
+            </figure>
+
+                <p>
+                    A Soft Murmur is an online background noise generator designed for
+                    activities such as focusing and relaxing. Its main interaction is based
+                    around choosing and combining ambient sounds.
+                </p>
+
+                <p>
+                    I focused on its <strong>purpose and simplicity</strong>. The main task is
+                    easy to understand and users do not need to learn a complex workflow before
+                    they can begin creating a sound environment. This is useful for an interface
+                    that is supposed to support another activity rather than become the user's
+                    main focus.
+                </p>
+
+                <p>
+                    For FocusScape, I would keep the main controls limited to atmosphere, 
+                    sound layers and volume. Users should be able to set up a soundscape 
+                    quickly and then return their attention to studying.
+                </p>
+
+                <p>
+                    <a href="https://asoftmurmur.com/"
+                        target="_blank" rel="noopener">
+                        Visit A Soft Murmur ↗
+                    </a>
+                </p>
+            </article>
+
+
+            <article class="ui-analysis">
+                <p class="ui-label">Independent Research — Characterisation</p>
+                <h3>Noisli</h3>
+
+            <figure class="ui-figure">
+                <img src="assets/images/noisli.png"
+                    alt="Noisli interface showing background sound options">
+                <figcaption>
+                    Figure 4. Noisli interface. Source: Noisli.
+                </figcaption>
+            </figure>
+
+                <p>
+                    Noisli allows users to combine background sounds to create an audio
+                    environment for activities including work, study and relaxation.
+                    Its presentation connects ambient sound with focus and productivity
+                    rather than treating it only as entertainment.
+                </p>
+
+                <p>
+                    I analysed Noisli through <strong>characterisation</strong>. The interface
+                    communicates a calm and functional character that supports an activity
+                    happening outside the website. The sound is important, but the interface
+                    does not need to continuously demand attention from the user.
+                </p>
+
+                <p>
+                    This influenced FocusScape's character. I want it to feel like a quiet
+                    study companion rather than a music player. After a session begins,
+                    unnecessary controls could be reduced so the soundtrack remains present
+                    without competing with the user's work.
+                </p>
+
+                <p>
+                    <a href="https://www.noisli.com/"
+                        target="_blank" rel="noopener">
+                        Visit Noisli ↗
+                    </a>
+                </p>
+            </article>
+
+        </section>
+
+
+        <section id="references">
+            <p class="section-number">05</p>
+            <h2>References</h2>
+
+            <ul class="references">
+                <li>
+                    bellicapelli, <em>OTS-01</em>.
+                    <a href="https://bellicapelli.itch.io/ots-01"
+                        target="_blank" rel="noopener">Website ↗</a>
+                </li>
+
+                <li>
+                    Pigeon, S., <em>The Ultimate Jungle Noise Generator</em>, myNoise.
+                    <a href="https://mynoise.net/NoiseMachines/jungleNoiseGenerator.php"
+                        target="_blank" rel="noopener">Website ↗</a>
+                </li>
+
+                <li>
+                    <em>A Soft Murmur</em>.
+                    <a href="https://asoftmurmur.com/"
+                        target="_blank" rel="noopener">Website ↗</a>
+                </li>
+
+                <li>
+                    <em>Noisli</em>.
+                    <a href="https://www.noisli.com/"
+                        target="_blank" rel="noopener">Website ↗</a>
+                </li>
+
+                <li>
+                    MDN Web Docs, <em>Math.random()</em>.
+                    <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Math/random"
+                        target="_blank" rel="noopener">Documentation ↗</a>
+                </li>
+            </ul>
+        </section>
+
+    </main>
+
+
+    <footer>
+        <p>Interface Design and Development - Assignment 1</p>
+        <p>Harper Doan</p>
+    </footer>
+
+</body>
+
+</html>
