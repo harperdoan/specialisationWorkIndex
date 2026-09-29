@@ -1,69 +1,29 @@
-// FocusScape Prototype 03
-// Tests a reduced interface with only atmosphere and intensity controls.
+// FocusScape Prototype 04
+// Uses Math.random() to create controlled automatic variations.
 
-const playButton = document.querySelector("#playButton");
-const statusText = document.querySelector("#status");
+const playButton =
+    document.querySelector("#playButton");
 
-const atmosphereSelect =
-    document.querySelector("#atmosphere");
+const statusText =
+    document.querySelector("#status");
 
-const intensitySlider =
-    document.querySelector("#intensity");
+const variationTitle =
+    document.querySelector("#variationTitle");
 
-const intensityValue =
-    document.querySelector("#intensityValue");
+const variationText =
+    document.querySelector("#variationText");
 
-const setupSummary =
-    document.querySelector("#setupSummary");
+const rainValue =
+    document.querySelector("#rainValue");
 
+const cafeValue =
+    document.querySelector("#cafeValue");
 
-const atmospheres = {
+const windValue =
+    document.querySelector("#windValue");
 
-    rainy: {
-        name: "Rainy Study",
-        rain: 55,
-        cafe: 5,
-        wind: 12,
-        tone: 6
-    },
-
-    cafe: {
-        name: "Quiet Café",
-        rain: 8,
-        cafe: 45,
-        wind: 5,
-        tone: 7
-    },
-
-    wind: {
-        name: "Soft Wind",
-        rain: 8,
-        cafe: 2,
-        wind: 48,
-        tone: 5
-    }
-
-};
-
-
-const intensityLevels = {
-
-    1: {
-        name: "Low",
-        multiplier: 0.65
-    },
-
-    2: {
-        name: "Medium",
-        multiplier: 1
-    },
-
-    3: {
-        name: "High",
-        multiplier: 1.25
-    }
-
-};
+const toneValue =
+    document.querySelector("#toneValue");
 
 
 let audioContext;
@@ -75,11 +35,20 @@ let windGain;
 let toneGain;
 
 let activeSources = [];
+let variationTimer;
 
 let isPlaying = false;
 
 
-// Creates soft noise used by the café and wind layers.
+let mix = {
+    rain: 40,
+    cafe: 15,
+    wind: 15,
+    tone: 8
+};
+
+
+// Creates softer noise for café and wind.
 function createSoftNoise(context) {
 
     const bufferSize =
@@ -119,67 +88,92 @@ function createSoftNoise(context) {
 }
 
 
-// Returns the currently selected atmosphere.
-function getAtmosphere() {
+// Makes a random whole number between min and max.
+function randomRange(min, max) {
 
-    return atmospheres[
-        atmosphereSelect.value
-    ];
+    return Math.floor(
+        Math.random() *
+        (max - min + 1)
+    ) + min;
 }
 
 
-// Returns the selected intensity level.
-function getIntensity() {
-
-    return intensityLevels[
-        intensitySlider.value
-    ];
-}
-
-
-// Updates the small setup summary.
-function updateInterface() {
-
-    const atmosphere =
-        getAtmosphere();
-
-    const intensity =
-        getIntensity();
-
-    intensityValue.textContent =
-        intensity.name;
-
-    setupSummary.textContent =
-        `${atmosphere.name} · ${intensity.name} intensity`;
-}
-
-
-// Changes a volume smoothly.
+// Keeps changes smooth.
 function smoothVolume(gainNode, value) {
 
     gainNode.gain.setTargetAtTime(
         value,
         audioContext.currentTime,
-        0.15
+        0.5
     );
 }
 
 
-// Calculates volume using both atmosphere and intensity.
-function getVolume(sound, baseAmount) {
+// Updates the visible percentages.
+function updateDisplay() {
 
-    const atmosphere =
-        getAtmosphere();
+    rainValue.textContent =
+        `${mix.rain}%`;
 
-    const intensity =
-        getIntensity();
+    cafeValue.textContent =
+        `${mix.cafe}%`;
 
-    return (
-        atmosphere[sound] /
-        100 *
-        baseAmount *
-        intensity.multiplier
-    );
+    windValue.textContent =
+        `${mix.wind}%`;
+
+    toneValue.textContent =
+        `${mix.tone}%`;
+}
+
+
+// Creates one controlled random variation.
+function makeVariation() {
+
+    mix.rain =
+        randomRange(30, 55);
+
+    mix.cafe =
+        randomRange(5, 22);
+
+    mix.wind =
+        randomRange(8, 25);
+
+    mix.tone =
+        randomRange(4, 12);
+
+
+    updateDisplay();
+
+
+    if (isPlaying) {
+
+        smoothVolume(
+            rainGain,
+            mix.rain / 100 * 0.10
+        );
+
+        smoothVolume(
+            cafeGain,
+            mix.cafe / 100 * 0.07
+        );
+
+        smoothVolume(
+            windGain,
+            mix.wind / 100 * 0.11
+        );
+
+        smoothVolume(
+            toneGain,
+            mix.tone / 100 * 0.025
+        );
+    }
+
+
+    variationTitle.textContent =
+        "Soundscape gently changed";
+
+    variationText.textContent =
+        "A new mix was generated within the allowed focus ranges.";
 }
 
 
@@ -192,10 +186,12 @@ function createSoundscape() {
     audioContext =
         new AudioContext();
 
+
     masterGain =
         audioContext.createGain();
 
-    masterGain.gain.value = 0.8;
+    masterGain.gain.value =
+        0.8;
 
     masterGain.connect(
         audioContext.destination
@@ -254,7 +250,7 @@ function createSoundscape() {
         audioContext.createGain();
 
     rainGain.gain.value =
-        getVolume("rain", 0.10);
+        mix.rain / 100 * 0.10;
 
 
     rainSource
@@ -287,7 +283,7 @@ function createSoundscape() {
         audioContext.createGain();
 
     cafeGain.gain.value =
-        getVolume("cafe", 0.07);
+        mix.cafe / 100 * 0.07;
 
 
     cafeSource
@@ -316,7 +312,7 @@ function createSoundscape() {
         audioContext.createGain();
 
     windGain.gain.value =
-        getVolume("wind", 0.11);
+        mix.wind / 100 * 0.11;
 
 
     windSource
@@ -348,7 +344,7 @@ function createSoundscape() {
         audioContext.createGain();
 
     toneGain.gain.value =
-        getVolume("tone", 0.025);
+        mix.tone / 100 * 0.025;
 
 
     tone1.connect(toneGain);
@@ -375,36 +371,23 @@ function createSoundscape() {
 }
 
 
-// Updates all four sounds when a control changes.
-function updateAudio() {
+// Starts automatic variations every 6 seconds.
+// The short interval makes the behaviour easy to test in the prototype.
+function startAutomaticVariation() {
 
-    if (!isPlaying) {
-        return;
-    }
-
-    smoothVolume(
-        rainGain,
-        getVolume("rain", 0.10)
-    );
-
-    smoothVolume(
-        cafeGain,
-        getVolume("cafe", 0.07)
-    );
-
-    smoothVolume(
-        windGain,
-        getVolume("wind", 0.11)
-    );
-
-    smoothVolume(
-        toneGain,
-        getVolume("tone", 0.025)
-    );
+    variationTimer =
+        setInterval(
+            makeVariation,
+            6000
+        );
 }
 
 
 function stopSoundscape() {
+
+    clearInterval(
+        variationTimer
+    );
 
     activeSources.forEach((source) => {
 
@@ -424,29 +407,6 @@ function stopSoundscape() {
 }
 
 
-// Atmosphere selection.
-atmosphereSelect.addEventListener(
-    "change",
-    () => {
-
-        updateInterface();
-        updateAudio();
-    }
-);
-
-
-// Intensity control.
-intensitySlider.addEventListener(
-    "input",
-    () => {
-
-        updateInterface();
-        updateAudio();
-    }
-);
-
-
-// Start and stop the focus session.
 playButton.addEventListener(
     "click",
     () => {
@@ -457,11 +417,19 @@ playButton.addEventListener(
 
             isPlaying = true;
 
-            playButton.textContent =
-                "Stop Focus";
-
             statusText.textContent =
-                "Focus mode active";
+                "Automatic variation active";
+
+            playButton.textContent =
+                "Stop Soundscape";
+
+            variationTitle.textContent =
+                "Listening";
+
+            variationText.textContent =
+                "The mix will change automatically every few seconds.";
+
+            startAutomaticVariation();
 
         } else {
 
@@ -469,15 +437,21 @@ playButton.addEventListener(
 
             isPlaying = false;
 
-            playButton.textContent =
-                "Start Focus";
-
             statusText.textContent =
                 "Ready to focus";
+
+            playButton.textContent =
+                "Start Soundscape";
+
+            variationTitle.textContent =
+                "Waiting to begin";
+
+            variationText.textContent =
+                "Small changes will occur automatically while the soundscape is playing.";
         }
 
     }
 );
 
 
-updateInterface();
+updateDisplay();

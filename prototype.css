@@ -68,14 +68,9 @@ h1 {
     font-weight: 700;
 }
 
-button,
-select,
-input {
-    font: inherit;
-}
-
 button {
     border: 0;
+    font: inherit;
     cursor: pointer;
 }
 
@@ -91,61 +86,46 @@ button {
     opacity: 0.82;
 }
 
-.minimal-controls {
-    display: grid;
-    gap: 32px;
-    padding: 32px 0;
+.variation-panel {
+    padding-top: 30px;
 }
 
-.control-group > label,
-.control-heading label {
-    font-size: 1rem;
-    font-weight: 700;
-}
-
-select {
-    width: 100%;
-    margin-top: 12px;
-    padding: 14px;
-    border: 1px solid #c9c5bc;
-    border-radius: 10px;
-    background: #f7f6f2;
-    color: #202020;
-}
-
-.control-heading {
-    display: flex;
-    justify-content: space-between;
-    gap: 20px;
-    margin-bottom: 14px;
-}
-
-#intensityValue {
-    color: #77736d;
-}
-
-input[type="range"] {
-    width: 100%;
-    cursor: pointer;
-}
-
-.range-labels {
-    display: flex;
-    justify-content: space-between;
-    margin-top: 8px;
-    font-size: 0.75rem;
-    color: #8b8780;
-}
-
-.summary {
-    padding-top: 25px;
-    border-top: 1px solid #ddddda;
-}
-
-#setupSummary {
+.variation-title {
     margin: 0;
-    font-size: 1rem;
+    font-size: 1.35rem;
     font-weight: 700;
+}
+
+.variation-text {
+    max-width: 560px;
+    margin: 10px 0 0;
+    color: #6f6b65;
+    line-height: 1.6;
+}
+
+.mix-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 12px;
+    margin-top: 28px;
+}
+
+.mix-item {
+    padding: 18px;
+    border: 1px solid #d8d4cc;
+    border-radius: 12px;
+    background: #f7f6f2;
+}
+
+.mix-item span {
+    display: block;
+    margin-bottom: 8px;
+    color: #77736d;
+    font-size: 0.8rem;
+}
+
+.mix-item strong {
+    font-size: 1.15rem;
 }
 
 .prototype-note {
@@ -169,5 +149,9 @@ input[type="range"] {
 
     #playButton {
         width: 100%;
+    }
+
+    .mix-grid {
+        grid-template-columns: repeat(2, 1fr);
     }
 }

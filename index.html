@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-    <title>FocusScape | Minimal Focus Mode</title>
+    <title>FocusScape | Automatic Variation</title>
 
     <link rel="icon" type="image/png" href="assets/icons/favicon.png">
     <link rel="stylesheet" href="reset.css">
@@ -16,13 +16,13 @@
     <main class="prototype">
 
         <header>
-            <p class="label">FocusScape - Prototype 03</p>
+            <p class="label">FocusScape - Prototype 04</p>
 
-            <h1>Minimal Focus Mode</h1>
+            <h1>Automatic Variation</h1>
 
             <p class="intro">
-                A reduced interface for setting up a soundscape quickly and
-                returning attention to study.
+                A study soundscape that changes gently over time without
+                requiring constant interaction.
             </p>
         </header>
 
@@ -32,75 +32,54 @@
             <div class="session-status">
 
                 <div>
-                    <p class="small-label">Focus session</p>
+                    <p class="small-label">Current session</p>
                     <p id="status">Ready to focus</p>
                 </div>
 
                 <button id="playButton">
-                    Start Focus
+                    Start Soundscape
                 </button>
 
             </div>
 
 
-            <div class="minimal-controls">
-
-                <div class="control-group">
-
-                    <label for="atmosphere">
-                        Atmosphere
-                    </label>
-
-                    <select id="atmosphere">
-                        <option value="rainy">Rainy Study</option>
-                        <option value="cafe">Quiet Café</option>
-                        <option value="wind">Soft Wind</option>
-                    </select>
-
-                </div>
-
-
-                <div class="control-group">
-
-                    <div class="control-heading">
-                        <label for="intensity">
-                            Intensity
-                        </label>
-
-                        <span id="intensityValue">
-                            Medium
-                        </span>
-                    </div>
-
-                    <input
-                        id="intensity"
-                        type="range"
-                        min="1"
-                        max="3"
-                        value="2"
-                        step="1"
-                    >
-
-                    <div class="range-labels">
-                        <span>Low</span>
-                        <span>Medium</span>
-                        <span>High</span>
-                    </div>
-
-                </div>
-
-            </div>
-
-
-            <div class="summary">
+            <div class="variation-panel">
 
                 <p class="small-label">
-                    Current setup
+                    Automatic variation
                 </p>
 
-                <p id="setupSummary">
-                    Rainy Study · Medium intensity
+                <p class="variation-title" id="variationTitle">
+                    Waiting to begin
                 </p>
+
+                <p class="variation-text" id="variationText">
+                    Small changes will occur automatically while the soundscape is playing.
+                </p>
+
+                <div class="mix-grid">
+
+                    <div class="mix-item">
+                        <span>Rain</span>
+                        <strong id="rainValue">40%</strong>
+                    </div>
+
+                    <div class="mix-item">
+                        <span>Café</span>
+                        <strong id="cafeValue">15%</strong>
+                    </div>
+
+                    <div class="mix-item">
+                        <span>Wind</span>
+                        <strong id="windValue">15%</strong>
+                    </div>
+
+                    <div class="mix-item">
+                        <span>Tone</span>
+                        <strong id="toneValue">8%</strong>
+                    </div>
+
+                </div>
 
             </div>
 
@@ -110,14 +89,14 @@
         <section class="prototype-note">
 
             <p class="small-label">
-                Design Area - Information Design
+                Design Area - Randomisation & Feedback
             </p>
 
             <p>
-                This version removes most individual sound controls and keeps
-                only atmosphere and intensity. It explores whether reducing
-                visible choices can make FocusScape easier to use while the
-                user's attention remains on studying.
+                This prototype uses controlled randomisation to make small
+                automatic changes to the soundscape over time. The random
+                values stay within limited ranges so the background audio can
+                feel less repetitive without becoming distracting.
             </p>
 
         </section>
