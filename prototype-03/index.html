@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>FocusScape | Minimal Focus Mode</title>
+
+    <link rel="icon" type="image/png" href="assets/icons/favicon.png">
+    <link rel="stylesheet" href="reset.css">
+    <link rel="stylesheet" href="prototype.css">
+</head>
+
+<body>
+
+    <main class="prototype">
+
+        <header>
+            <p class="label">FocusScape - Prototype 03</p>
+
+            <h1>Minimal Focus Mode</h1>
+
+            <p class="intro">
+                A reduced interface for setting up a soundscape quickly and
+                returning attention to study.
+            </p>
+        </header>
+
+
+        <section class="player">
+
+            <div class="session-status">
+
+                <div>
+                    <p class="small-label">Focus session</p>
+                    <p id="status">Ready to focus</p>
+                </div>
+
+                <button id="playButton">
+                    Start Focus
+                </button>
+
+            </div>
+
+
+            <div class="minimal-controls">
+
+                <div class="control-group">
+
+                    <label for="atmosphere">
+                        Atmosphere
+                    </label>
+
+                    <select id="atmosphere">
+                        <option value="rainy">Rainy Study</option>
+                        <option value="cafe">Quiet Café</option>
+                        <option value="wind">Soft Wind</option>
+                    </select>
+
+                </div>
+
+
+                <div class="control-group">
+
+                    <div class="control-heading">
+                        <label for="intensity">
+                            Intensity
+                        </label>
+
+                        <span id="intensityValue">
+                            Medium
+                        </span>
+                    </div>
+
+                    <input
+                        id="intensity"
+                        type="range"
+                        min="1"
+                        max="3"
+                        value="2"
+                        step="1"
+                    >
+
+                    <div class="range-labels">
+                        <span>Low</span>
+                        <span>Medium</span>
+                        <span>High</span>
+                    </div>
+
+                </div>
+
+            </div>
+
+
+            <div class="summary">
+
+                <p class="small-label">
+                    Current setup
+                </p>
+
+                <p id="setupSummary">
+                    Rainy Study · Medium intensity
+                </p>
+
+            </div>
+
+        </section>
+
+
+        <section class="prototype-note">
+
+            <p class="small-label">
+                Design Area - Information Design
+            </p>
+
+            <p>
+                This version removes most individual sound controls and keeps
+                only atmosphere and intensity. It explores whether reducing
+                visible choices can make FocusScape easier to use while the
+                user's attention remains on studying.
+            </p>
+
+        </section>
+
+    </main>
+
+
+    <script src="prototype.js"></script>
+
+</body>
+</html>

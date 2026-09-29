@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>FocusScape | Individual Controls</title>
+
+    <link rel="icon" type="image/png" href="assets/icons/favicon.png">
+    <link rel="stylesheet" href="reset.css">
+    <link rel="stylesheet" href="prototype.css">
+</head>
+
+<body>
+
+    <main class="prototype">
+
+        <header>
+            <p class="label">FocusScape - Prototype 01</p>
+            <h1>Individual Controls</h1>
+            <p class="intro">
+                Build a study soundscape by adjusting each sound layer separately.
+            </p>
+        </header>
+
+        <section class="player">
+
+            <div class="status-row">
+                <div>
+                    <p class="small-label">Current session</p>
+                    <p id="status">Ready to focus</p>
+                </div>
+
+                <button id="playButton">Start Soundscape</button>
+            </div>
+
+            <div class="controls">
+
+                <div class="sound-control">
+                    <div class="control-heading">
+                        <label for="rain">Rain</label>
+                        <span id="rainValue">40%</span>
+                    </div>
+                    <input id="rain" type="range" min="0" max="100" value="40">
+                    <p>Soft background rain for a steady atmosphere.</p>
+                </div>
+
+                <div class="sound-control">
+                    <div class="control-heading">
+                        <label for="cafe">Café</label>
+                        <span id="cafeValue">18%</span>
+                    </div>
+                    <input id="cafe" type="range" min="0" max="100" value="18">
+                    <p>Low background noise inspired by a quiet café.</p>
+                </div>
+
+                <div class="sound-control">
+                    <div class="control-heading">
+                        <label for="wind">Wind</label>
+                        <span id="windValue">15%</span>
+                    </div>
+                    <input id="wind" type="range" min="0" max="100" value="15">
+                    <p>A softer filtered layer that adds movement.</p>
+                </div>
+
+                <div class="sound-control">
+                    <div class="control-heading">
+                        <label for="tone">Soft Tone</label>
+                        <span id="toneValue">8%</span>
+                    </div>
+                    <input id="tone" type="range" min="0" max="100" value="8">
+                    <p>A subtle musical tone underneath the ambience.</p>
+                </div>
+
+            </div>
+
+        </section>
+
+        <section class="prototype-note">
+            <p class="small-label">Design Area - Information Design</p>
+            <p>
+                This prototype exposes each sound layer as a separate control.
+                The purpose is to explore how direct control affects the user's
+                ability to personalise a study environment.
+            </p>
+        </section>
+
+    </main>
+
+    <script src="prototype.js"></script>
+</body>
+</html>
