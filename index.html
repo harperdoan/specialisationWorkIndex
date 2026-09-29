@@ -1,62 +1,144 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport"
-          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
-    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<!-- !!!!! -->
-<!--    change this to refer to your specific page  -->
-    <title>Harper's Work Index</title>
+    <title>FocusScape | Atmosphere Presets</title>
 
-<!-- !!!!! -->
-<!--  change this to your preferred icon  -->
-    <!-- favicon was sourced from favicon.io but the original graphics are copyright 2020 Twitter, Inc
-    and other contributors -->
-    <!-- They are licensed under CC-BY 4.0 as linked below -->
-    <!-- https://creativecommons.org/licenses/by/4.0/ -->
-    <link rel="icon" type="image/png" href="./assets/icons/favicon.png">
-
+    <link rel="icon" type="image/png" href="assets/icons/favicon.png">
     <link rel="stylesheet" href="reset.css">
-    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="prototype.css">
 </head>
+
 <body>
 
-    <header>
-<!-- !!!!! -->
-<!--    change this to your preferred online name  -->
-        <h1>Harper's Interface Design and Development Work</h1>
-    </header>
+    <main class="prototype">
 
-    <div class="mainNavContainer">
+        <header>
+            <p class="label">FocusScape - Prototype 02</p>
 
-        <nav>
-            <a href="assignment1.html">Assignment 1</a>  
-            <a href="assignment2.html">Assignment 2</a>
-            <a href="https://au.miro.com/app/board/u3jVOf5JEwg=/?share_link_id=64603921437" target="_blank">Community of Practice</a>
-        </nav>
+            <h1>Atmosphere Presets</h1>
 
-        <main>
-            <section id="intro-section">
-                <p> This work index documents my projects for Interface Design and Development.</p>
-            </section>
-        </main>
+            <p class="intro">
+                Choose a study atmosphere instead of adjusting each sound separately.
+            </p>
+        </header>
 
-        <!-- this is an empty element which helps with spacing -->
-        <aside></aside>
+        <section class="player">
 
-    </div>
+            <div class="status-row">
 
-    <footer>
-        <p>
-<!-- !!!!! -->
-<!--    change this to your preferred online name and update link to refer to your github page  -->
-            Page maintained by:
-            <a href="https://github.com/harperdoan" target="_blank">
-            Harper Doan
-            </a>
-        </p>
-    </footer>
+                <div>
+                    <p class="small-label">Current atmosphere</p>
+                    <p id="status">Rainy Study</p>
+                </div>
+
+                <button id="playButton">
+                    Start Soundscape
+                </button>
+
+            </div>
+
+            <div class="preset-grid">
+
+                <button class="preset-button active" data-preset="rainy">
+                    <strong>Rainy Study</strong>
+                    <span>
+                        Rain with light wind and a soft tone.
+                    </span>
+                </button>
+
+                <button class="preset-button" data-preset="cafe">
+                    <strong>Quiet Café</strong>
+                    <span>
+                        Café ambience with a small amount of rain.
+                    </span>
+                </button>
+
+                <button class="preset-button" data-preset="night">
+                    <strong>Night Focus</strong>
+                    <span>
+                        Soft rain, low wind and a warmer tone.
+                    </span>
+                </button>
+
+                <button class="preset-button" data-preset="wind">
+                    <strong>Soft Wind</strong>
+                    <span>
+                        A calmer atmosphere led by the wind layer.
+                    </span>
+                </button>
+
+            </div>
+
+            <div class="mix-readout">
+
+                <p class="small-label">
+                    Preset mix
+                </p>
+
+                <div class="mix-row">
+                    <span>Rain</span>
+
+                    <div class="meter">
+                        <div id="rainMeter" class="meter-fill"></div>
+                    </div>
+
+                    <span id="rainValue">55%</span>
+                </div>
+
+                <div class="mix-row">
+                    <span>Café</span>
+
+                    <div class="meter">
+                        <div id="cafeMeter" class="meter-fill"></div>
+                    </div>
+
+                    <span id="cafeValue">5%</span>
+                </div>
+
+                <div class="mix-row">
+                    <span>Wind</span>
+
+                    <div class="meter">
+                        <div id="windMeter" class="meter-fill"></div>
+                    </div>
+
+                    <span id="windValue">12%</span>
+                </div>
+
+                <div class="mix-row">
+                    <span>Tone</span>
+
+                    <div class="meter">
+                        <div id="toneMeter" class="meter-fill"></div>
+                    </div>
+
+                    <span id="toneValue">6%</span>
+                </div>
+
+            </div>
+
+        </section>
+
+        <section class="prototype-note">
+
+            <p class="small-label">
+                Design Area - Information Design
+            </p>
+
+            <p>
+                This prototype groups several sound settings into atmosphere presets.
+                It explores whether reducing the number of individual controls can make
+                FocusScape quicker to set up and less distracting during study.
+            </p>
+
+        </section>
+
+    </main>
+
+    <script src="prototype.js"></script>
+
 </body>
 </html>
