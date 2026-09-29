@@ -1,27 +1,23 @@
-// FocusScape Prototype 02
-// Explores atmosphere presets instead of separate sound controls.
+// FocusScape Prototype 03
+// Tests a reduced interface with only atmosphere and intensity controls.
 
 const playButton = document.querySelector("#playButton");
 const statusText = document.querySelector("#status");
-const presetButtons = document.querySelectorAll(".preset-button");
 
-const meters = {
-    rain: document.querySelector("#rainMeter"),
-    cafe: document.querySelector("#cafeMeter"),
-    wind: document.querySelector("#windMeter"),
-    tone: document.querySelector("#toneMeter")
-};
+const atmosphereSelect =
+    document.querySelector("#atmosphere");
 
-const values = {
-    rain: document.querySelector("#rainValue"),
-    cafe: document.querySelector("#cafeValue"),
-    wind: document.querySelector("#windValue"),
-    tone: document.querySelector("#toneValue")
-};
+const intensitySlider =
+    document.querySelector("#intensity");
+
+const intensityValue =
+    document.querySelector("#intensityValue");
+
+const setupSummary =
+    document.querySelector("#setupSummary");
 
 
-// Each preset stores a different balance of the four sound layers.
-const presets = {
+const atmospheres = {
 
     rainy: {
         name: "Rainy Study",
@@ -39,14 +35,6 @@ const presets = {
         tone: 7
     },
 
-    night: {
-        name: "Night Focus",
-        rain: 28,
-        cafe: 3,
-        wind: 14,
-        tone: 12
-    },
-
     wind: {
         name: "Soft Wind",
         rain: 8,
@@ -58,7 +46,25 @@ const presets = {
 };
 
 
-let currentPreset = presets.rainy;
+const intensityLevels = {
+
+    1: {
+        name: "Low",
+        multiplier: 0.65
+    },
+
+    2: {
+        name: "Medium",
+        multiplier: 1
+    },
+
+    3: {
+        name: "High",
+        multiplier: 1.25
+    }
+
+};
+
 
 let audioContext;
 let masterGain;
@@ -73,17 +79,18 @@ let activeSources = [];
 let isPlaying = false;
 
 
-// Creates softer noise for the café and wind layers.
+// Creates soft noise used by the café and wind layers.
 function createSoftNoise(context) {
 
     const bufferSize =
         context.sampleRate * 4;
 
-    const buffer = context.createBuffer(
-        1,
-        bufferSize,
-        context.sampleRate
-    );
+    const buffer =
+        context.createBuffer(
+            1,
+            bufferSize,
+            context.sampleRate
+        );
 
     const data =
         buffer.getChannelData(0);
@@ -112,7 +119,42 @@ function createSoftNoise(context) {
 }
 
 
-// Makes volume changes smoother.
+// Returns the currently selected atmosphere.
+function getAtmosphere() {
+
+    return atmospheres[
+        atmosphereSelect.value
+    ];
+}
+
+
+// Returns the selected intensity level.
+function getIntensity() {
+
+    return intensityLevels[
+        intensitySlider.value
+    ];
+}
+
+
+// Updates the small setup summary.
+function updateInterface() {
+
+    const atmosphere =
+        getAtmosphere();
+
+    const intensity =
+        getIntensity();
+
+    intensityValue.textContent =
+        intensity.name;
+
+    setupSummary.textContent =
+        `${atmosphere.name} · ${intensity.name} intensity`;
+}
+
+
+// Changes a volume smoothly.
 function smoothVolume(gainNode, value) {
 
     gainNode.gain.setTargetAtTime(
@@ -123,26 +165,21 @@ function smoothVolume(gainNode, value) {
 }
 
 
-// Changes the bars and percentages shown in the interface.
-function updateMixDisplay(preset) {
+// Calculates volume using both atmosphere and intensity.
+function getVolume(sound, baseAmount) {
 
-    const sounds = [
-        "rain",
-        "cafe",
-        "wind",
-        "tone"
-    ];
+    const atmosphere =
+        getAtmosphere();
 
-    sounds.forEach((sound) => {
+    const intensity =
+        getIntensity();
 
-        meters[sound].style.width =
-            `${preset[sound]}%`;
-
-        values[sound].textContent =
-            `${preset[sound]}%`;
-
-    });
-
+    return (
+        atmosphere[sound] /
+        100 *
+        baseAmount *
+        intensity.multiplier
+    );
 }
 
 
@@ -217,7 +254,7 @@ function createSoundscape() {
         audioContext.createGain();
 
     rainGain.gain.value =
-        currentPreset.rain / 100 * 0.10;
+        getVolume("rain", 0.10);
 
 
     rainSource
@@ -250,7 +287,7 @@ function createSoundscape() {
         audioContext.createGain();
 
     cafeGain.gain.value =
-        currentPreset.cafe / 100 * 0.07;
+        getVolume("cafe", 0.07);
 
 
     cafeSource
@@ -279,7 +316,7 @@ function createSoundscape() {
         audioContext.createGain();
 
     windGain.gain.value =
-        currentPreset.wind / 100 * 0.11;
+        getVolume("wind", 0.11);
 
 
     windSource
@@ -297,11 +334,8 @@ function createSoundscape() {
     const tone2 =
         audioContext.createOscillator();
 
-    tone1.type =
-        "sine";
-
-    tone2.type =
-        "sine";
+    tone1.type = "sine";
+    tone2.type = "sine";
 
     tone1.frequency.value =
         174.61;
@@ -314,7 +348,7 @@ function createSoundscape() {
         audioContext.createGain();
 
     toneGain.gain.value =
-        currentPreset.tone / 100 * 0.025;
+        getVolume("tone", 0.025);
 
 
     tone1.connect(toneGain);
@@ -323,8 +357,6 @@ function createSoundscape() {
     toneGain.connect(masterGain);
 
 
-
-    // Start all sound sources.
 
     rainSource.start();
     cafeSource.start();
@@ -340,12 +372,11 @@ function createSoundscape() {
         tone1,
         tone2
     ];
-
 }
 
 
-// Changes the live audio when another preset is selected.
-function updateAudio(preset) {
+// Updates all four sounds when a control changes.
+function updateAudio() {
 
     if (!isPlaying) {
         return;
@@ -353,24 +384,23 @@ function updateAudio(preset) {
 
     smoothVolume(
         rainGain,
-        preset.rain / 100 * 0.10
+        getVolume("rain", 0.10)
     );
 
     smoothVolume(
         cafeGain,
-        preset.cafe / 100 * 0.07
+        getVolume("cafe", 0.07)
     );
 
     smoothVolume(
         windGain,
-        preset.wind / 100 * 0.11
+        getVolume("wind", 0.11)
     );
 
     smoothVolume(
         toneGain,
-        preset.tone / 100 * 0.025
+        getVolume("tone", 0.025)
     );
-
 }
 
 
@@ -391,65 +421,63 @@ function stopSoundscape() {
     if (audioContext) {
         audioContext.close();
     }
-
 }
 
 
-// Selects a different atmosphere preset.
-presetButtons.forEach((button) => {
+// Atmosphere selection.
+atmosphereSelect.addEventListener(
+    "change",
+    () => {
 
-    button.addEventListener("click", () => {
-
-        presetButtons.forEach((item) => {
-            item.classList.remove("active");
-        });
-
-        button.classList.add("active");
-
-        currentPreset =
-            presets[button.dataset.preset];
-
-        statusText.textContent =
-            currentPreset.name;
-
-        updateMixDisplay(
-            currentPreset
-        );
-
-        updateAudio(
-            currentPreset
-        );
-
-    });
-
-});
+        updateInterface();
+        updateAudio();
+    }
+);
 
 
-// Starts and stops the soundscape.
-playButton.addEventListener("click", () => {
+// Intensity control.
+intensitySlider.addEventListener(
+    "input",
+    () => {
 
-    if (!isPlaying) {
+        updateInterface();
+        updateAudio();
+    }
+);
 
-        createSoundscape();
 
-        isPlaying = true;
+// Start and stop the focus session.
+playButton.addEventListener(
+    "click",
+    () => {
 
-        playButton.textContent =
-            "Stop Soundscape";
+        if (!isPlaying) {
 
-    } else {
+            createSoundscape();
 
-        stopSoundscape();
+            isPlaying = true;
 
-        isPlaying = false;
+            playButton.textContent =
+                "Stop Focus";
 
-        playButton.textContent =
-            "Start Soundscape";
+            statusText.textContent =
+                "Focus mode active";
+
+        } else {
+
+            stopSoundscape();
+
+            isPlaying = false;
+
+            playButton.textContent =
+                "Start Focus";
+
+            statusText.textContent =
+                "Ready to focus";
+        }
 
     }
+);
 
-});
 
-
-// Shows the default Rainy Study mix when the page loads.
-updateMixDisplay(currentPreset);
+updateInterface();

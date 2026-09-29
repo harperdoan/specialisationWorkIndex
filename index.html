@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-    <title>FocusScape | Atmosphere Presets</title>
+    <title>FocusScape | Minimal Focus Mode</title>
 
     <link rel="icon" type="image/png" href="assets/icons/favicon.png">
     <link rel="stylesheet" href="reset.css">
@@ -16,111 +16,96 @@
     <main class="prototype">
 
         <header>
-            <p class="label">FocusScape - Prototype 02</p>
+            <p class="label">FocusScape - Prototype 03</p>
 
-            <h1>Atmosphere Presets</h1>
+            <h1>Minimal Focus Mode</h1>
 
             <p class="intro">
-                Choose a study atmosphere instead of adjusting each sound separately.
+                A reduced interface for setting up a soundscape quickly and
+                returning attention to study.
             </p>
         </header>
 
+
         <section class="player">
 
-            <div class="status-row">
+            <div class="session-status">
 
                 <div>
-                    <p class="small-label">Current atmosphere</p>
-                    <p id="status">Rainy Study</p>
+                    <p class="small-label">Focus session</p>
+                    <p id="status">Ready to focus</p>
                 </div>
 
                 <button id="playButton">
-                    Start Soundscape
+                    Start Focus
                 </button>
 
             </div>
 
-            <div class="preset-grid">
 
-                <button class="preset-button active" data-preset="rainy">
-                    <strong>Rainy Study</strong>
-                    <span>
-                        Rain with light wind and a soft tone.
-                    </span>
-                </button>
+            <div class="minimal-controls">
 
-                <button class="preset-button" data-preset="cafe">
-                    <strong>Quiet Café</strong>
-                    <span>
-                        Café ambience with a small amount of rain.
-                    </span>
-                </button>
+                <div class="control-group">
 
-                <button class="preset-button" data-preset="night">
-                    <strong>Night Focus</strong>
-                    <span>
-                        Soft rain, low wind and a warmer tone.
-                    </span>
-                </button>
+                    <label for="atmosphere">
+                        Atmosphere
+                    </label>
 
-                <button class="preset-button" data-preset="wind">
-                    <strong>Soft Wind</strong>
-                    <span>
-                        A calmer atmosphere led by the wind layer.
-                    </span>
-                </button>
+                    <select id="atmosphere">
+                        <option value="rainy">Rainy Study</option>
+                        <option value="cafe">Quiet Café</option>
+                        <option value="wind">Soft Wind</option>
+                    </select>
+
+                </div>
+
+
+                <div class="control-group">
+
+                    <div class="control-heading">
+                        <label for="intensity">
+                            Intensity
+                        </label>
+
+                        <span id="intensityValue">
+                            Medium
+                        </span>
+                    </div>
+
+                    <input
+                        id="intensity"
+                        type="range"
+                        min="1"
+                        max="3"
+                        value="2"
+                        step="1"
+                    >
+
+                    <div class="range-labels">
+                        <span>Low</span>
+                        <span>Medium</span>
+                        <span>High</span>
+                    </div>
+
+                </div>
 
             </div>
 
-            <div class="mix-readout">
+
+            <div class="summary">
 
                 <p class="small-label">
-                    Preset mix
+                    Current setup
                 </p>
 
-                <div class="mix-row">
-                    <span>Rain</span>
-
-                    <div class="meter">
-                        <div id="rainMeter" class="meter-fill"></div>
-                    </div>
-
-                    <span id="rainValue">55%</span>
-                </div>
-
-                <div class="mix-row">
-                    <span>Café</span>
-
-                    <div class="meter">
-                        <div id="cafeMeter" class="meter-fill"></div>
-                    </div>
-
-                    <span id="cafeValue">5%</span>
-                </div>
-
-                <div class="mix-row">
-                    <span>Wind</span>
-
-                    <div class="meter">
-                        <div id="windMeter" class="meter-fill"></div>
-                    </div>
-
-                    <span id="windValue">12%</span>
-                </div>
-
-                <div class="mix-row">
-                    <span>Tone</span>
-
-                    <div class="meter">
-                        <div id="toneMeter" class="meter-fill"></div>
-                    </div>
-
-                    <span id="toneValue">6%</span>
-                </div>
+                <p id="setupSummary">
+                    Rainy Study · Medium intensity
+                </p>
 
             </div>
 
         </section>
+
 
         <section class="prototype-note">
 
@@ -129,14 +114,16 @@
             </p>
 
             <p>
-                This prototype groups several sound settings into atmosphere presets.
-                It explores whether reducing the number of individual controls can make
-                FocusScape quicker to set up and less distracting during study.
+                This version removes most individual sound controls and keeps
+                only atmosphere and intensity. It explores whether reducing
+                visible choices can make FocusScape easier to use while the
+                user's attention remains on studying.
             </p>
 
         </section>
 
     </main>
+
 
     <script src="prototype.js"></script>
 
