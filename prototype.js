@@ -1,5 +1,5 @@
-// FocusScape Prototype 05
-// Uses Math.random() when the user requests a new variation.
+// FocusScape Prototype 06
+// Uses Math.random() and gives visible feedback about each change.
 
 const playButton =
     document.querySelector("#playButton");
@@ -13,8 +13,8 @@ const statusText =
 const variationTitle =
     document.querySelector("#variationTitle");
 
-const variationText =
-    document.querySelector("#variationText");
+const feedbackList =
+    document.querySelector("#feedbackList");
 
 const rainValue =
     document.querySelector("#rainValue");
@@ -51,7 +51,6 @@ let mix = {
 };
 
 
-// Creates soft noise for café and wind.
 function createSoftNoise(context) {
 
     const bufferSize =
@@ -91,7 +90,6 @@ function createSoftNoise(context) {
 }
 
 
-// Returns a random whole number between min and max.
 function randomRange(min, max) {
 
     return Math.floor(
@@ -101,7 +99,6 @@ function randomRange(min, max) {
 }
 
 
-// Smoothly changes volume.
 function smoothVolume(gainNode, value) {
 
     gainNode.gain.setTargetAtTime(
@@ -112,7 +109,6 @@ function smoothVolume(gainNode, value) {
 }
 
 
-// Updates the percentages shown on screen.
 function updateDisplay() {
 
     rainValue.textContent =
@@ -129,8 +125,57 @@ function updateDisplay() {
 }
 
 
-// Creates a new controlled random variation.
+// Creates feedback by comparing old and new values.
+function showFeedback(previousMix) {
+
+    feedbackList.innerHTML = "";
+
+    const labels = {
+        rain: "Rain",
+        cafe: "Café",
+        wind: "Wind",
+        tone: "Tone"
+    };
+
+
+    Object.keys(mix).forEach((name) => {
+
+        const difference =
+            mix[name] - previousMix[name];
+
+        const item =
+            document.createElement("p");
+
+
+        if (difference > 0) {
+
+            item.textContent =
+                `${labels[name]} increased by ${difference}%`;
+
+        } else if (difference < 0) {
+
+            item.textContent =
+                `${labels[name]} decreased by ${Math.abs(difference)}%`;
+
+        } else {
+
+            item.textContent =
+                `${labels[name]} stayed the same`;
+        }
+
+
+        feedbackList.appendChild(item);
+
+    });
+}
+
+
 function generateVariation() {
+
+    const previousMix = {
+        ...mix
+    };
+
 
     mix.rain =
         randomRange(22, 38);
@@ -147,14 +192,14 @@ function generateVariation() {
 
     variationNumber += 1;
 
-    updateDisplay();
-
 
     variationTitle.textContent =
         `Variation ${variationNumber}`;
 
-    variationText.textContent =
-        "A new controlled mix has been generated.";
+
+    updateDisplay();
+
+    showFeedback(previousMix);
 
 
     if (isPlaying) {
@@ -390,13 +435,13 @@ function stopSoundscape() {
 
     activeSources = [];
 
+
     if (audioContext) {
         audioContext.close();
     }
 }
 
 
-// Generates a new variation when the user asks for one.
 generateButton.addEventListener(
     "click",
     () => {
@@ -407,7 +452,6 @@ generateButton.addEventListener(
 );
 
 
-// Starts and stops the soundscape.
 playButton.addEventListener(
     "click",
     () => {

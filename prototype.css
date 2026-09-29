@@ -53,11 +53,15 @@ h1 {
     background: #ffffff;
 }
 
-.session-status {
+.session-status,
+.variation-heading {
     display: flex;
     align-items: center;
     justify-content: space-between;
     gap: 20px;
+}
+
+.session-status {
     padding-bottom: 28px;
     border-bottom: 1px solid #ddddda;
 }
@@ -82,8 +86,18 @@ button {
     font-weight: 700;
 }
 
-#playButton:hover {
-    opacity: 0.82;
+#generateButton {
+    padding: 12px 18px;
+    border: 1px solid #202020;
+    border-radius: 10px;
+    background: #ffffff;
+    color: #202020;
+    font-weight: 700;
+}
+
+#playButton:hover,
+#generateButton:hover {
+    opacity: 0.8;
 }
 
 .variation-panel {
@@ -94,13 +108,6 @@ button {
     margin: 0;
     font-size: 1.35rem;
     font-weight: 700;
-}
-
-.variation-text {
-    max-width: 560px;
-    margin: 10px 0 0;
-    color: #6f6b65;
-    line-height: 1.6;
 }
 
 .mix-grid {
@@ -128,20 +135,23 @@ button {
     font-size: 1.15rem;
 }
 
-#generateButton {
-    width: 100%;
-    margin-top: 24px;
-    padding: 16px 20px;
-    border: 1px solid #202020;
-    border-radius: 12px;
-    background: #ffffff;
-    color: #202020;
-    font-weight: 700;
+.feedback {
+    margin-top: 28px;
+    padding-top: 24px;
+    border-top: 1px solid #ddddda;
 }
 
-#generateButton:hover {
-    background: #202020;
-    color: #ffffff;
+.feedback-list {
+    display: grid;
+    gap: 8px;
+}
+
+.feedback-list p {
+    margin: 0;
+    padding: 10px 12px;
+    border-radius: 8px;
+    background: #f3f1eb;
+    font-size: 0.9rem;
 }
 
 .prototype-note {
@@ -158,12 +168,14 @@ button {
         padding-top: 45px;
     }
 
-    .session-status {
+    .session-status,
+    .variation-heading {
         align-items: flex-start;
         flex-direction: column;
     }
 
-    #playButton {
+    #playButton,
+    #generateButton {
         width: 100%;
     }
 

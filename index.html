@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-    <title>FocusScape | Generate Variation</title>
+    <title>FocusScape | Variation Feedback</title>
 
     <link rel="icon" type="image/png" href="assets/icons/favicon.png">
     <link rel="stylesheet" href="reset.css">
@@ -16,12 +16,12 @@
     <main class="prototype">
 
         <header>
-            <p class="label">FocusScape - Prototype 05</p>
+            <p class="label">FocusScape - Prototype 06</p>
 
-            <h1>Generate Variation</h1>
+            <h1>Variation Feedback</h1>
 
             <p class="intro">
-                A soundscape where the user chooses when a new variation is generated.
+                A randomised soundscape that explains what changed after each variation.
             </p>
         </header>
 
@@ -44,47 +44,58 @@
 
             <div class="variation-panel">
 
-                <p class="small-label">
-                    Current mix
-                </p>
+                <div class="variation-heading">
 
-                <p class="variation-title" id="variationTitle">
-                    Original variation
-                </p>
+                    <div>
+                        <p class="small-label">Current variation</p>
+                        <p class="variation-title" id="variationTitle">
+                            Variation 1
+                        </p>
+                    </div>
 
-                <p class="variation-text" id="variationText">
-                    Generate a new variation whenever the current soundscape feels repetitive.
-                </p>
+                    <button id="generateButton">
+                        New Variation
+                    </button>
+
+                </div>
 
 
                 <div class="mix-grid">
 
                     <div class="mix-item">
                         <span>Rain</span>
-                        <strong id="rainValue">40%</strong>
+                        <strong id="rainValue">30%</strong>
                     </div>
 
                     <div class="mix-item">
                         <span>Café</span>
-                        <strong id="cafeValue">15%</strong>
+                        <strong id="cafeValue">22%</strong>
                     </div>
 
                     <div class="mix-item">
                         <span>Wind</span>
-                        <strong id="windValue">15%</strong>
+                        <strong id="windValue">18%</strong>
                     </div>
 
                     <div class="mix-item">
                         <span>Tone</span>
-                        <strong id="toneValue">8%</strong>
+                        <strong id="toneValue">16%</strong>
                     </div>
 
                 </div>
 
 
-                <button id="generateButton">
-                    Generate New Variation
-                </button>
+                <div class="feedback">
+
+                    <p class="small-label">
+                        What changed
+                    </p>
+
+                    <div id="feedbackList" class="feedback-list">
+                        <p>No changes yet.</p>
+                    </div>
+
+                </div>
 
             </div>
 
@@ -98,16 +109,15 @@
             </p>
 
             <p>
-                This prototype gives the user direct control over when randomisation
-                occurs. Instead of changing automatically, a new controlled mix is
-                created only when the user asks for one. This explores whether manual
-                control makes the randomisation feel more predictable during study.
+                This prototype makes random changes more visible by describing
+                which sound layers increased or decreased. It explores whether
+                clear feedback helps users understand the behaviour of the
+                randomisation without adding too much distraction.
             </p>
 
         </section>
 
     </main>
-
 
     <script src="prototype.js"></script>
 
