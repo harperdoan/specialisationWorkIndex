@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-    <title>FocusScape | Automatic Variation</title>
+    <title>FocusScape | Generate Variation</title>
 
     <link rel="icon" type="image/png" href="assets/icons/favicon.png">
     <link rel="stylesheet" href="reset.css">
@@ -16,13 +16,12 @@
     <main class="prototype">
 
         <header>
-            <p class="label">FocusScape - Prototype 04</p>
+            <p class="label">FocusScape - Prototype 05</p>
 
-            <h1>Automatic Variation</h1>
+            <h1>Generate Variation</h1>
 
             <p class="intro">
-                A study soundscape that changes gently over time without
-                requiring constant interaction.
+                A soundscape where the user chooses when a new variation is generated.
             </p>
         </header>
 
@@ -46,16 +45,17 @@
             <div class="variation-panel">
 
                 <p class="small-label">
-                    Automatic variation
+                    Current mix
                 </p>
 
                 <p class="variation-title" id="variationTitle">
-                    Waiting to begin
+                    Original variation
                 </p>
 
                 <p class="variation-text" id="variationText">
-                    Small changes will occur automatically while the soundscape is playing.
+                    Generate a new variation whenever the current soundscape feels repetitive.
                 </p>
+
 
                 <div class="mix-grid">
 
@@ -81,6 +81,11 @@
 
                 </div>
 
+
+                <button id="generateButton">
+                    Generate New Variation
+                </button>
+
             </div>
 
         </section>
@@ -93,10 +98,10 @@
             </p>
 
             <p>
-                This prototype uses controlled randomisation to make small
-                automatic changes to the soundscape over time. The random
-                values stay within limited ranges so the background audio can
-                feel less repetitive without becoming distracting.
+                This prototype gives the user direct control over when randomisation
+                occurs. Instead of changing automatically, a new controlled mix is
+                created only when the user asks for one. This explores whether manual
+                control makes the randomisation feel more predictable during study.
             </p>
 
         </section>
