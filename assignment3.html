@@ -1,0 +1,515 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Assignment 3 - FocusScape</title>
+  <link rel="stylesheet" href="reset.css">
+  <link rel="stylesheet" href="assignment2.css">
+  <style>
+    .a3-section { margin: 35px 0; }
+    .a3-section h2 { margin-bottom: 20px; }
+    .a3-section h3 { margin: 28px 0 12px; }
+    .a3-section p, .a3-section li {
+      line-height: 1.8;
+      margin-bottom: 16px;
+    }
+    .a3-card {
+      border: 1px solid #ccc;
+      border-radius: 14px;
+      padding: 26px;
+      margin: 20px 0;
+    }
+    .a3-button {
+      display: inline-block;
+      padding: 15px 22px;
+      border: 1px solid #222;
+      border-radius: 10px;
+      text-decoration: none;
+      margin: 12px 0;
+    }
+    .a3-divider {
+      border: 0;
+      border-top: 1px solid #ccc;
+      margin: 25px 0;
+    }
+  </style>
+</head>
+
+<body>
+<main style="max-width: 950px; margin: auto; padding: 35px 24px;">
+
+  <p><a href="index.html">← Back to Work Index</a></p>
+
+  <header style="margin: 65px 0;">
+    <p>ASSIGNMENT 3 - FINAL PROJECT</p>
+    <h1>FocusScape</h1>
+    <p>An evolving soundscape for focused study.</p>
+  </header>
+
+
+  <section class="a3-section">
+    <h2>01 - Project Synopsis</h2>
+    <p>
+      FocusScape is a browser-based interactive soundscape designed
+      to support students during independent study. It combines
+      different ambient sound layers to create a personalised
+      background environment.
+    </p>
+    <p>
+      Instead of playing one fixed recording, FocusScape allows
+      users to adjust the balance of sounds and generate small
+      variations. The aim is to create a calm listening experience
+      that can change without becoming distracting.
+    </p>
+  </section>
+
+  
+
+  <section class="a3-section">
+    <h2>02 - Design Scenario</h2>
+    <p>
+      The project responds to the experience of students who study
+      independently and want background audio to help them focus.
+      Some students prefer a particular atmosphere, while others
+      want more control over individual sounds.
+    </p>
+    <p>
+      The design challenge was to create a browser-based audio
+      interface that supports personalisation while remaining
+      simple enough to use during a study session.
+    </p>
+
+    <h3>How the Final Project Responds</h3>
+    <p>
+      The final version combines quick atmosphere presets with
+      individual volume controls. Users can begin with a preset
+      and then adjust the sound layers to suit their preferences.
+    </p>
+    <p>
+      A New Variation button introduces small random changes,
+      allowing the soundscape to evolve when the user chooses.
+      The interface also displays feedback to help users
+      understand which sound levels have changed.
+    </p>
+    <p>
+      This approach balances ease of use, personal control and
+      variation while keeping the main purpose focused on studying.
+    </p>
+  </section>
+
+  
+
+  <section class="a3-section">
+    <h2>03 - Finished Project</h2>
+    <p>
+      The final interactive website was developed using HTML,
+      CSS and JavaScript, including the Web Audio API.
+    </p>
+
+    <a class="a3-button"
+       href="https://harperdoan.github.io/FocusScape-final/"
+       target="_blank" rel="noopener noreferrer">
+      Open FocusScape Final →
+    </a>
+
+    <p>
+      <a href="https://github.com/harperdoan/FocusScape-final"
+         target="_blank" rel="noopener noreferrer">
+        View Final Project GitHub Repository →
+      </a>
+    </p>
+  </section>
+
+  
+
+  <section class="a3-section">
+    <h2>04 - Core Interactive Features</h2>
+
+    <div class="a3-card">
+      <h3>Atmosphere Presets</h3>
+      <p>
+        Three presets - Rainy Study, Café Focus and Quiet Focus -
+        allow users to select a starting atmosphere quickly.
+        Each preset applies a different balance of the four
+        sound layers.
+      </p>
+      <p>
+        This feature was developed from Prototype 02, which
+        explored a simpler alternative to adjusting every
+        sound individually.
+      </p>
+    </div>
+
+    <div class="a3-card">
+      <h3>Individual Sound Controls</h3>
+      <p>
+        Four sliders allow users to adjust Rain, Café, Wind and
+        Tone independently. Percentage labels show the current
+        values, while the audio responds to adjustments during
+        playback.
+      </p>
+      <p>
+        This feature builds on Prototype 01 and allows users
+        to personalise a preset rather than being limited
+        to fixed sound combinations.
+      </p>
+    </div>
+
+    <div class="a3-card">
+      <h3>New Variation</h3>
+      <p>
+        The New Variation button generates small changes to the
+        current sound mix. Instead of replacing every setting
+        with a completely new combination, it changes the
+        existing values within limited ranges.
+      </p>
+      <p>
+        This builds on the randomisation experiments in
+        Prototypes 04 and 05. The final design uses
+        user-triggered changes so students can decide
+        when they want a different soundscape.
+      </p>
+    </div>
+
+    <div class="a3-card">
+      <h3>Variation Feedback</h3>
+      <p>
+        After a new variation is generated, the interface
+        displays which sound layers increased, decreased
+        or remained unchanged.
+      </p>
+      <p>
+        This feature develops Prototype 06 by connecting
+        the changes in the audio with visible information.
+      </p>
+    </div>
+
+    <div class="a3-card">
+      <h3>Playback Controls</h3>
+      <p>
+        Users can start and stop the soundscape through
+        a main playback button. The interface displays
+        the current session state so users can understand
+        whether audio is playing.
+      </p>
+    </div>
+  </section>
+
+  
+
+  <section class="a3-section">
+    <h2>05 - Extended Technique: Math.random()</h2>
+    <p>
+      My chosen extended technique is JavaScript's
+      <strong>Math.random()</strong>. It is used to generate
+      controlled variation in the soundscape.
+    </p>
+    <p>
+      A helper function converts random numbers into values
+      within a defined range. When the user selects New
+      Variation, the program adds a small random amount
+      to each current sound level.
+    </p>
+
+    <div class="a3-card">
+      <pre style="white-space: pre-wrap; overflow-wrap: anywhere;"><code>function randomRange(min, max) {
+  return Math.floor(
+    Math.random() * (max - min + 1)
+  ) + min;
+}
+
+mix.rain = clamp(
+  mix.rain + randomRange(-8, 8)
+);</code></pre>
+    </div>
+
+    <p>
+      The values are limited using a clamp function so the
+      sound levels remain within the allowed range.
+      The updated values are then displayed on screen and
+      applied to the audio system.
+    </p>
+    <p>
+      I chose controlled randomisation rather than completely
+      unpredictable changes because FocusScape is intended
+      for studying. The soundscape should feel less repetitive
+      without suddenly changing into a very different atmosphere.
+    </p>
+  </section>
+
+  
+
+  <section class="a3-section">
+    <h2>06 - Design System</h2>
+
+    <h3>Visual Style</h3>
+    <p>
+      FocusScape uses a minimal visual style with a light
+      neutral background, dark typography, subtle borders
+      and rounded interface elements. The aim is to create
+      a calm and readable experience.
+    </p>
+
+    <h3>Information Hierarchy</h3>
+    <p>
+      The main playback control is presented prominently,
+      followed by atmosphere presets, variation controls
+      and individual sound adjustments. This structure
+      supports both quick setup and more detailed
+      personalisation.
+    </p>
+
+    <h3>Interaction and Feedback</h3>
+    <p>
+      Buttons use clear labels, sliders display numerical
+      values and the session status communicates playback
+      state. Variation feedback explains the result of
+      user-triggered randomisation.
+    </p>
+
+    <h3>Responsive Layout</h3>
+    <p>
+      The layout adapts to different screen sizes so the
+      controls remain accessible on desktop and smaller
+      devices.
+    </p>
+  </section>
+
+  
+
+  <section class="a3-section">
+    <h2>07 - Peer Testing and Final Decisions</h2>
+    <p>
+      During Assignment 2, I collected feedback from seven
+      participants on six parallel prototypes.
+    </p>
+    <p>
+      All seven participants described the amount of control
+      in the information design prototypes as "about right".
+      For randomisation, three preferred automatic variation,
+      three preferred manual variation and one preferred
+      variation with visible feedback.
+    </p>
+    <p>
+      Several participants preferred the simplicity of
+      atmosphere presets, while others valued detailed
+      control over individual sounds. One participant
+      suggested combining presets with individual controls.
+      Another recommended combining visual feedback with
+      individual sound adjustments.
+    </p>
+    <p>
+      These comments influenced the final design, which
+      brings together presets, sliders and variation feedback
+      rather than selecting only one prototype.
+    </p>
+    <p>
+      Testing also identified limitations. Some participants
+      found the feedback logs distracting, while others
+      reported that changes were too subtle or different
+      noise layers were difficult to distinguish. These
+      findings informed the areas I considered during
+      final refinement.
+    </p>
+  </section>
+
+  
+
+  <section class="a3-section">
+    <h2>08 - Development and Commit Logs</h2>
+    
+    <h3>Development from Assignment 2 to the Final Project</h3>
+    <p>
+    Assignment 2 explored six parallel prototypes across two design
+    directions: how users control the soundscape and how random variation
+    is introduced. The final project combines their strengths based on
+    peer feedback and the requirements of the study scenario.
+    </p>
+
+    <h3>Iteration 01 - Presets and Individual Controls</h3>
+    <p>
+    Prototype 01 explored individual sound controls, while Prototype 02
+    explored atmosphere presets. Peer feedback highlighted the convenience
+    of presets but also the value of detailed personalisation.
+    The final version combines three presets with four independent sliders,
+    allowing users to start quickly and then adjust their sound mix.
+    </p>
+
+    <h3>Iteration 02 - Controlled Randomisation</h3>
+    <p>
+    Prototypes 04-06 explored different approaches to variation.
+    Three participants preferred automatic variation, three preferred
+    manual variation and one preferred visible feedback.
+    I retained user-triggered variation so students can choose when
+    the soundscape changes.
+    </p>
+    <p>
+    I also refined the JavaScript so that Math.random() generates
+    small changes relative to the current mix, rather than replacing
+    all values with a completely new combination. A clamp function
+    keeps the resulting values within the permitted range.
+    </p>
+
+    <h3>Iteration 03 - Audio and Interface Synchronisation</h3>
+    <p>
+    The final JavaScript connects the presets, sliders and variation
+    button to the same sound mix. The Web Audio API manages the sound
+    layers and their gain values. The displayed percentages are updated
+    alongside the audio settings, helping users understand their
+    current configuration.
+    </p>
+
+    <h3>Iteration 04 - Variation Feedback</h3>
+    <p>
+    Prototype 06 introduced visible feedback. Some participants found
+    this useful, while others considered the logs distracting or the
+    changes difficult to notice.
+    </p>
+    <p>
+    The final version retains feedback indicating which sound levels
+    increased, decreased or remained unchanged. This connects the
+    randomisation technique to visible information without requiring
+    users to interpret the sound alone.
+    </p>
+
+    <h3>Iteration 05 - Visual and Responsive Refinement</h3>
+    <p>
+    The final interface uses a neutral colour palette, clear typography,
+    rounded controls and a more structured hierarchy. Playback is
+    presented first, followed by presets, variation and detailed sound
+    controls. This supports quick setup while keeping further
+    personalisation available.
+    </p>
+
+    <h3>Technical Decisions and Limitations</h3>
+    <h4>Implementation and Design Rationale</h4>
+    <p>
+    Instead of generating a completely new sound mix each time,
+    I used Math.random() to create small adjustments around the
+    current values. Each sound layer has a different adjustment
+    range: Rain (+/-8), Cafe (+/-7), Wind (+/-6) and Tone (+/-5).
+    These smaller ranges were chosen to reduce sudden changes
+    that could interrupt concentration. A clamp function keeps
+    the values between 0 and 100.
+    </p>
+
+    <p>
+    I also connected the presets, individual sliders and
+    variation button to the same JavaScript mix object.
+    This means that changes made through different controls
+    remain consistent. The updateAudioVolumes() function
+    applies the new values to the Web Audio API, while
+    updateDisplay() updates the visible percentages.
+    This approach avoids conflicting settings and makes
+    the interface easier to understand.
+    </p>
+
+    <p>
+    Math.random() was selected to create controlled variation, while
+    the Web Audio API supports browser-based sound generation and
+    individual volume adjustment. The design aims to maintain a
+    consistent listening experience during study.
+    </p>
+    <p>
+    However, synthesised audio may sound less natural than environmental
+    recordings. Testing also suggested that some changes are too subtle
+    to notice and that detailed feedback may interrupt concentration.
+    These remain opportunities for future improvement.
+    </p>
+
+    <h3>Commit History and Development Evidence</h3>
+    <p>
+    The GitHub commit history records the actual changes made during
+    final development. The iterations above explain the design rationale
+    behind these changes and how the final version developed from
+    the six Assignment 2 prototypes.
+    </p>
+
+
+    <h3>Final Project Commit-by-Commit Development Record</h3>
+
+    <p>
+    The following record explains how each GitHub commit contributed
+    to the development of FocusScape, including the purpose behind
+    the changes.
+    </p>
+
+    <ol>
+     <li>
+       <strong>Initial commit:</strong>
+       Created the final project repository and established a
+       separate space for developing the finished website.
+     </li>
+
+     <li>
+       <strong>Add Prototype 06 as final project base:</strong>
+       Used the variation feedback prototype as a starting point.
+       This provided an existing soundscape interface and a way
+       to communicate changes to users.
+     </li>
+
+     <li>
+       <strong>Refine final project identity and interface copy:</strong>
+       Updated the project name, headings and instructions to
+       communicate its purpose as a study soundscape more clearly.
+     </li>
+
+     <li>
+       <strong>Add manual sound controls and controlled random variation:</strong>
+       Introduced individual volume sliders and refined Math.random()
+       to make smaller changes relative to the current mix.
+       This gives users more control and reduces sudden changes.
+     </li>
+
+     <li>
+       <strong>Add responsive layouts for required screen sizes:</strong>
+       Adjusted the interface layout for different viewport widths
+       so that the controls remain usable on smaller screens.
+     </li>
+
+     <li>
+       <strong>Improve accessibility and interaction states:</strong>
+       Refined interface feedback and interaction states to make
+       the controls easier to understand and operate.
+     </li>
+
+     <li>
+       <strong>Polish final interface layout and feedback styling:</strong>
+       Improved spacing, visual hierarchy and feedback presentation
+       to create a more consistent interface.
+     </li>
+
+     <li>
+       <strong>Refine atmosphere presets and sound filtering:</strong>
+       Adjusted preset behaviour and audio filtering to improve
+       the listening experience and balance between sound layers.
+     </li>
+    </ol>
+
+    <p>
+    These commits show the progression from the selected prototype
+    to a more complete final experience. The development focused
+    on combining the strongest features, refining the audio
+    interaction and improving the interface for study.
+    </p>
+
+    <a class="a3-button"
+       href="https://github.com/harperdoan/FocusScape-final/commits/main/"
+       target="_blank" rel="noopener noreferrer">
+      View Final Version Commit History →
+    </a>
+  </section>
+
+  
+
+  <footer>
+    <p>Interface Design and Development - Assignment 3</p>
+    <p>FocusScape | Harper Doan</p>
+    <p><a href="index.html">← Back to Work Index</a></p>
+  </footer>
+
+</main>
+</body>
+</html>
